@@ -30,15 +30,15 @@ app.MapGet("/books/list",(LibraryDB db)=>
 {
     return db.Books.ToList();
 });
-app.MapPost("/books/update",(LibraryDB db,Book book)=>
+app.MapPost("/books/update/",(LibraryDB db,Book book)=>
 {
-    db.Books.Add(book);
+    db.Books.Update(book);
     db.SaveChanges();
 });
-app.MapPost("/books/remove/{id}",(LibraryDB db,int id)=>
+app.MapPost("/books/remove/{id}", (LibraryDB db, int id) =>
 {
-    var book=db.Books.Find(id);
-    if (book!=null)
+    var book = db.Books.Find(id);
+    if (book != null)
     {
         db.Books.Remove(book);
         db.SaveChanges();
@@ -74,7 +74,7 @@ app.MapPost("/rents/add",(LibraryDB db,Rent rent)=>
 });
 app.MapGet("/rents/list",(LibraryDB db)=>
 {
-    return db.Rents.ToList();
+    return db.Rents.Include(m=>m.Member).Include(b=>b.Book).ToList();
 });
 app.MapPost("/rents/update",(LibraryDB db,Rent rent)=>
 {

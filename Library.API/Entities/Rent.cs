@@ -12,5 +12,7 @@ namespace Library.API.Entities
         public DateTime? ReturnTime { get; set; }
         public Book? Book { get; set; }
         public Member? Member { get; set; }
+        public int BookId { get; set; }
+        public int MemberId { get; set; }
     }
 }
