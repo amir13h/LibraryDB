@@ -49,7 +49,7 @@ app.MapPost("/members/add",(LibraryDB db,Member member)=>
     db.Members.Add(member);
     db.SaveChanges();
 });
-app.MapGet("/members/list",(LibraryDB db,Member member)=>
+app.MapGet("/members/list",(LibraryDB db)=>
 {
     return db.Members.ToList();
 });
@@ -72,9 +72,9 @@ app.MapPost("/rents/add",(LibraryDB db,Rent rent)=>
     db.Rents.Add(rent);
     db.SaveChanges();
 });
-app.MapGet("/rents/list",(LibraryDB db,Rent rent)=>
+app.MapGet("/rents/list",(LibraryDB db)=>
 {
-    return db.Books.ToList();
+    return db.Rents.ToList();
 });
 app.MapPost("/rents/update",(LibraryDB db,Rent rent)=>
 {
